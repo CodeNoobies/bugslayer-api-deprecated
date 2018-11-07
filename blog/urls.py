@@ -1,7 +1,7 @@
 from django.urls import path
-from blog.views import ListArticlesView
-
+from .views import index, show
 
 urlpatterns = [
-    path('', ListArticlesView.as_view(), name='articles-all'),
+    path('', index, name='index'),
+    path('<slug:slug>/', show, name='show_article'),
 ]
