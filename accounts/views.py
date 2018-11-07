@@ -26,12 +26,12 @@ class UsersDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get(self, request, *args, **kwargs):
         try:
-            user = self.queryset.get(username=kwargs["username"])
+            user = self.queryset.get(username=kwargs['username'])
             return Response(UserSerializer(user).data)
         except User.DoesNotExist:
             return Response(
                 data={
-                    "message": "User with username: {} does not exist".format(kwargs["username"])
+                    'message': 'User with username: {} does not exist'.format(kwargs['username'])
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
@@ -45,20 +45,20 @@ class UsersDetailView(generics.RetrieveUpdateDestroyAPIView):
         except User.DoesNotExist:
             return Response(
                 data={
-                    "message": "User with username: {} does not exist".format(kwargs["username"])
+                    'message': 'User with username: {} does not exist'.format(kwargs['username'])
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
 
     def delete(self, request, *args, **kwargs):
         try:
-            user = self.queryset.get(username=kwargs["username"])
+            user = self.queryset.get(username=kwargs['username'])
             user.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except User.DoesNotExist:
             return Response(
                 data={
-                    "message": "User with username: {} does not exist".format(kwargs["username"])
+                    'message': 'User with username: {} does not exist'.format(kwargs['username'])
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
