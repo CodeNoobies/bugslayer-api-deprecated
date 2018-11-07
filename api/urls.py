@@ -17,11 +17,11 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 
 extrapatterns = [
-    re_path('articles/', include('blog.urls')),
     re_path('users/', include('accounts.urls')),
 ]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('api/', include(extrapatterns)),
+    path('', include('blog.urls')),
 ]
