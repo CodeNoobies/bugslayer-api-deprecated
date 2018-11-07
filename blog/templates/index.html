@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load blog_extras %}
+
+{% block title %}List of Articles - {% endblock %}
+
+{% block content %}
+  <h1 class="content-subhead">Recent Articles</h1>
+  {% for article in articles %}
+  <section class="post">
+    <header class="post-header">
+      <img width="48" height="48" alt="{{ article.author.username }}" class="post-avatar" src="{{ article.author.email|gravatar_url }}">
+
+      <a class="post-title" href="{% url 'show_article' article.slug %}">{{ article.title }}</a>
+
+      <p class="post-meta">
+        By <strong class="post-author">{{ article.author.username }}</strong>
+      </p>
+    </header>
+
+    <div class="post-description">
+      <p>
+        {{ article.content|truncatechars:250 }}
+      </p>
+    </div>
+  </section>
+  {% endfor %}
+{% endblock %}

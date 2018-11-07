@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load blog_extras %}
+
+{% block title %}{{ article.title }} - {% endblock %}
+
+{% block content %}
+<section class="post">
+  <header class="post-header">
+    <img width="48" height="48" alt="{{ article.user.username }}" class="post-avatar" src="{{ article.author.email|gravatar_url }}">
+
+    <h3 class="post-title" href="{% url 'show_article' article.slug %}">{{ article.title }}</h3>
+
+    <p class="post-meta">
+      By <strong class="post-author">{{ article.author.username }}</strong>
+    </p>
+  </header>
+
+  <div class="post-description">
+    {{ article.content|markdown|safe }}
+  </div>
+</section>
+{% endblock %}
