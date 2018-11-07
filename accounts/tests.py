@@ -30,7 +30,6 @@ class GetAllUsersTest(BaseViewTest):
         expected = User.objects.all()
         serialized = UserSerializer(expected, many=True)
         self.assertEqual(response.data, serialized.data)
-        #self.assertContains(response, 'article')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
